@@ -1,4 +1,11 @@
-const CHOCOLATE = 50, MILK = 45, BREAD = 20, ALCOHOL = 150, CYGARETTE = 150, CURRENCY = 'рублей';
+const CURRENCY = 'рублей';
+let sortament = {
+    chocolate: 50,
+    milk: 45,
+    bread: 20,
+    alcohol: 150,
+    cygarette: 150,
+};
 const userName = prompt('Введите Ваше имя', '');
 const userAddress = prompt('Введи Ваш адрес', '');
 let userDeposit = +prompt('Внесите сумму депозита, руб', '');
@@ -6,24 +13,10 @@ let isContinueShop = true;
 let cart = '\r\n' + '\r\n' + 'Корзина:';
 while (isContinueShop) {
     let productName = prompt(`Текущий депозит: ${userDeposit} ${CURRENCY}. Введите название товара`, '');
-    switch (productName) {
-        case 'Шоколад':
-            buyProduct(CHOCOLATE, productName, false);
-            break;
-        case 'Молоко':
-            buyProduct(MILK, productName, false);
-            break;
-        case 'Хлеб':
-            buyProduct(BREAD, productName, false);
-            break;
-        case 'Алкоголь':
-            buyProduct(ALCOHOL, productName, true);
-            break;
-        case 'Сигареты':
-            buyProduct(CYGARETTE, productName, true);
-            break;
-        default:
-            alert('товар не найден');
+    if (productName === 'alcohol' || productName === 'cygarette') {
+        buyProduct(sortament[productName], productName, true);
+        } else {
+        buyProduct(sortament[productName], productName, false);
     }
     isContinueShop = confirm(`продолжаем покупки? ${cart}`);
 }
